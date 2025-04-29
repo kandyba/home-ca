@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Albert Sans', sans-serif;
+    color: theme('colors.darkText');
+  }
+  
+  body {
+    @apply bg-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium text-darkText;
+  }
+  
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@layer components {
+  .stat-card {
+    @apply bg-white rounded-lg p-5 shadow-md transition-all duration-200 hover:shadow-lg;
+  }
+  
+  .icon {
+    @apply text-lightText;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all;
+  }
+  
+  .btn-outline {
+    @apply border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-all;
+  }
+  
+  .nav-link {
+    @apply flex items-center gap-2 p-2 rounded-md hover:bg-lightGray transition-all;
+  }
+  
+  .nav-link.active {
+    @apply bg-primary bg-opacity-10 text-primary;
+  }
+}
+
+[x-cloak] {
+  display: none !important;
+}
