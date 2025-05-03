@@ -5,13 +5,9 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Albert Sans', sans-serif;
-    color: theme('colors.darkText');
-  }
-  
   body {
-    @apply bg-white;
+    font-family: 'Albert Sans', sans-serif;
+    @apply bg-white text-darkText;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -41,7 +37,17 @@
   }
   
   .btn-primary {
-    @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all;
+    @apply inline-flex justify-center bg-primary text-white font-semibold rounded leading-normal transition duration-300 cursor-pointer hover:bg-orange4 active:bg-orange2;
+  }
+
+  .btn-primary.small {
+    @apply py-1 px-4.5 text-xs;
+  }
+  .btn-primary.medium {
+    @apply py-2 px-4.5 text-sm;
+  }
+  .btn-primary.big {
+    @apply py-3.5 px-4.5 text-base;
   }
   
   .btn-secondary {
