@@ -16,8 +16,8 @@ Alpine.store('app', {
   }
 });
 
-// Initialize the donut chart
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize the donut chart
   const ctx = document.getElementById('monthlyExpensesChart');
   if (ctx) {
     new Chart(ctx, {
@@ -115,6 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }]
     });
   }
+  // Initialize the donut chart
+
+  /*Nav scroll*/
+  const el = document.querySelector('.scroll-nav-container');
+  el.addEventListener('wheel', e => {
+    e.preventDefault();
+    el.scrollLeft += e.deltaY;
+  }, { passive: false });
+  /*Nav scroll*/
 });
 
 Alpine.start();

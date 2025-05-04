@@ -7,7 +7,7 @@
 @layer base {
   body {
     font-family: 'Albert Sans', sans-serif;
-    @apply bg-white text-darkText;
+    @apply bg-white text-darkText leading-normal;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -59,11 +59,32 @@
   }
   
   .nav-link {
-    @apply flex items-center gap-2 p-2 rounded-md hover:bg-lightGray transition-all;
+    @apply flex items-center p-2.5 gap-x-2 whitespace-nowrap;
+  }
+
+  .nav-link__icon {
+    @apply w-8 h-8 flex items-center justify-center border rounded-full border-bgGray2 bg-white text-primary duration-200;
+  }
+
+  .nav-link__icon svg {
+    @apply duration-200;
   }
   
-  .nav-link.active {
-    @apply bg-primary bg-opacity-10 text-primary;
+  .nav-link.active .nav-link__icon,
+  .nav-link:hover .nav-link__icon {
+    @apply bg-primary text-white border-primary;
+  }
+
+  .breadcrumbs {
+    @apply lg:gap-x-1 lg:text-xs;
+  }
+
+  .breadcrumbs a {
+    @apply flex gap-x-1 items-center after:w-3.5 after:h-3.5 after:bg-[url('src/assets/icons/breadcrums-divider.svg')] after:bg-no-repeat;
+  }
+
+  .breadcrumbs span {
+    @apply text-lightText;
   }
 }
 

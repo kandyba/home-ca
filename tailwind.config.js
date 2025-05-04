@@ -13,16 +13,23 @@ export default {
         darkText3: "#B6B6B6",
         lightText: "#949494",
         lightGray: "#F5F5F5",
+        bgGray2: "#E8E8E8",
+        greyscaleGray2: "#D9D9D9",
         mediumGray: "#E0E0E0",
         orange2: "#C94629",
         orange4: "#FF785C",
+        success: "#04BD78",
       },
       fontFamily: {
         sans: ['"Albert Sans"', 'sans-serif'],
       },
       container: {
         center: true,
-        padding: '1rem',
+        padding: {
+          DEFAULT: '1rem',
+          md: '2rem',
+          lg: '1rem'
+        },
         screens: {
           sm: '640px',
           md: '768px',
@@ -47,5 +54,17 @@ export default {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    function({ addUtilities }) {
+      addUtilities({
+        '.hide-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+        '.hide-scrollbar::-webkit-scrollbar': {
+          width: '0px',
+          height: '0px',
+        },
+      }, ['responsive'])
+    }
   ],
 }
