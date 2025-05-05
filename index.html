@@ -238,10 +238,10 @@
       </section>
 
       <!-- Main navigation -->
-      <nav x-ref="nav" class="sticky top-[3.25rem] bg-white z-10">
+      <nav x-ref="nav" class="sticky top-[3.25rem] bg-white overflow-hidden z-10">
         <div class="container px-0 lg:px-4">
-          <div class="border-b border-bgGray2">
-            <div class="scroll-nav-container flex items-center px-2.5 lg:px-0 lg:mr-[calc((100vw_-_1440px)_/_2_*_-1)] md:px-5 lg:pl-4 lg:pr-[calc((100vw_-_1440px)_/_2)] lg:pt-6 lg:pb-5.5 overflow-x-auto hide-scrollbar">
+            <div class="border-b border-bgGray2">
+                <div class="scroll-nav-container">
               <a href="#" class="nav-link active">
                 <div class="nav-link__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14"><path fill="currentColor" d="M3.5 0h-2A1.5 1.5 0 0 0 0 1.5v2A1.5 1.5 0 0 0 1.5 5h2A1.5 1.5 0 0 0 5 3.5v-2A1.5 1.5 0 0 0 3.5 0ZM12.5 0h-2A1.5 1.5 0 0 0 9 1.5v2A1.5 1.5 0 0 0 10.5 5h2A1.5 1.5 0 0 0 14 3.5v-2A1.5 1.5 0 0 0 12.5 0ZM3.5 9h-2A1.5 1.5 0 0 0 0 10.5v2A1.5 1.5 0 0 0 1.5 14h2A1.5 1.5 0 0 0 5 12.5v-2A1.5 1.5 0 0 0 3.5 9ZM12.5 9h-2A1.5 1.5 0 0 0 9 10.5v2a1.5 1.5 0 0 0 1.5 1.5h2a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 12.5 9Z"/></svg>
@@ -341,7 +341,7 @@
               </a>
 
             </div>
-          </div>
+            </div>
         </div>
       </nav>
 
@@ -359,89 +359,133 @@
         </div>
 
         <!-- Know Your Home section -->
-        <section class="pt-9">
+        <section class="pt-9 mb-12">
           <div class="container">
             <div class="flex items-center justify-between mb-6">
-              <h2 class="text-[32px] font-semibold tracking-[-0.96px] text-darkText">Know Your Home</h2>
+              <h2 class="text-2xl lg:text-[2rem] font-semibold -tracking-[0.72px] text-darkText">Know Your Home</h2>
               <div class="relative">
                 <button
                   @click="knowYourHomeMenu = !knowYourHomeMenu; manageFinancesMenu = false"
-                  class="p-1 rounded-full hover:bg-gray-100"
-                  :class="{ 'bg-gray-100': knowYourHomeMenu }"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                  </svg>
-                </button>
+                  class="w-8 h-8 rounded-full bg-[url('/src/assets/icons/ellipsis.svg')] bg-no-repeat bg-[length:20px_20px] bg-center hover:bg-greyscaleGray2"
+                  :class="{ 'bg-greyscaleGray2': knowYourHomeMenu }"
+                ></button>
                 <!-- Dropdown menu -->
                 <div
                   x-show="knowYourHomeMenu"
                   @click.away="knowYourHomeMenu = false"
-                  class="absolute right-0 mt-2 w-48 bg-white rounded-[8px] border border-[#E8E8E8] shadow-[0px_8px_16px_0px_rgba(0,0,0,0.08)] z-10"
+                  class="absolute right-0 mt-1 w-52 bg-white rounded-lg border border-bgGrey2 shadow-custom z-10"
                   x-cloak
                 >
-                  <div class="py-1">
-                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                      <img src="/src/assets/icons/home.svg" alt="Add" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                      <span>Add info</span>
+                  <div class="py-2 space-y-2">
+                    <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" stroke="currentColor" d="M10 2.5c4.135 0 7.5 3.365 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5S5.865 2.5 10 2.5ZM10 5a1.5 1.5 0 0 0-1.5 1.5v2h-2a1.5 1.5 0 0 0 0 3h2v2a1.5 1.5 0 0 0 3 0v-2h2a1.5 1.5 0 0 0 0-3h-2v-2A1.5 1.5 0 0 0 10 5Z"/></svg>
+                        <span class="text-darkText font-medium">Add info</span>
                     </a>
-                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                      <img src="/src/assets/icons/tools.svg" alt="Edit" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                      <span>Edit</span>
+                    <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><g fill="currentColor" clip-path="url(#a)"><path d="m17.098 8.667 1.146-1.147a4.045 4.045 0 0 0 1.194-2.882 4.048 4.048 0 0 0-1.194-2.881c-1.538-1.54-4.223-1.54-5.761 0l-1.147 1.146 5.762 5.764ZM9.568 4.672l-6.48 6.48a4.164 4.164 0 0 0-1.08 1.873L.573 18.41a.832.832 0 0 0 1.02 1.018l5.385-1.434a4.164 4.164 0 0 0 1.874-1.08l6.48-6.48-5.764-5.762Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
+                        <span class="text-darkText font-medium">Edit</span>
                     </a>
-                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                      <img src="/src/assets/icons/search.svg" alt="View" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                      <span>View Details</span>
+                    <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8Zm1 12a1 1 0 1 1-2 0V9.5a1 1 0 1 1 2 0V14Zm-1-6.5c-.689 0-1.25-.561-1.25-1.25S9.311 5 10 5s1.25.561 1.25 1.25S10.689 7.5 10 7.5Z"/></svg>
+                        <span class="text-darkText font-medium">View Details</span>
                     </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="container px-0">
+          <div class="container px-0 lg:px-4">
             <!-- Stats Grid -->
-            <div class="overflow-x-auto grid grid-flow-col grid-rows-2 auto-cols-[8.75rem] gap-4 hide-scrollbar p-4">
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/home.svg" alt="Home" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">45</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Key Facts</div>
+            <div class="grid grid-cols-[repeat(4,8.75rem)] md:grid-cols-4 grid-rows-2 lg:grid-rows-[repeat(2,10rem)] gap-2.5 p-4 lg:px-0 hide-scrollbar overflow-x-auto">
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                  <svg class="transition duration-200" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="currentColor" d="m35.215 17.961-9.333-7.093a3.118 3.118 0 0 0-3.766 0l-9.333 7.093a3.128 3.128 0 0 0-1.228 2.477v12.896a4.893 4.893 0 0 0 4.889 4.889h4.889v-7.111a2.668 2.668 0 0 1 5.333 0v7.11h4.889a4.893 4.893 0 0 0 4.889-4.888V20.438a3.13 3.13 0 0 0-1.229-2.477Z"/></svg>
+                  <div class="flex flex-col w-full">
+                      <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">45</span>
+                      <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Key Facts</span>
+                  </div>
                 </div>
 
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/tools.svg" alt="Tools" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">5</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Rooms</div>
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1907_131966)">
+                            <path d="M39 20H15C14.2044 20 13.4413 19.6839 12.8787 19.1213C12.3161 18.5587 12 17.7956 12 17C12 16.2044 12.3161 15.4413 12.8787 14.8787C13.4413 14.3161 14.2044 14 15 14H39C39.2652 14 39.5196 14.1054 39.7071 14.2929C39.8946 14.4804 40 14.7348 40 15V19C40 19.2652 39.8946 19.5196 39.7071 19.7071C39.5196 19.8946 39.2652 20 39 20Z" fill="currentColor"/>
+                            <path d="M15 12H22V10C22 9.46957 21.7893 8.96086 21.4142 8.58579C21.0391 8.21071 20.5304 8 20 8H10C9.46957 8 8.96086 8.21071 8.58579 8.58579C8.21071 8.96086 8 9.46957 8 10V38C8 38.5304 8.21071 39.0391 8.58579 39.4142C8.96086 39.7893 9.46957 40 10 40H20C20.5304 40 21.0391 39.7893 21.4142 39.4142C21.7893 39.0391 22 38.5304 22 38V22H15C13.6739 22 12.4021 21.4732 11.4645 20.5355C10.5268 19.5979 10 18.3261 10 17C10 15.6739 10.5268 14.4021 11.4645 13.4645C12.4021 12.5268 13.6739 12 15 12ZM15 28C15.5734 28.0012 16.129 28.1995 16.5736 28.5616C17.0182 28.9237 17.3248 29.4277 17.442 29.989C17.5592 30.5503 17.4799 31.1348 17.2174 31.6446C16.9548 32.1544 16.525 32.5584 16 32.789V35C16 35.2652 15.8946 35.5196 15.7071 35.7071C15.5196 35.8946 15.2652 36 15 36C14.7348 36 14.4804 35.8946 14.2929 35.7071C14.1054 35.5196 14 35.2652 14 35V32.789C13.475 32.5584 13.0452 32.1544 12.7826 31.6446C12.5201 31.1348 12.4408 30.5503 12.558 29.989C12.6752 29.4277 12.9818 28.9237 13.4264 28.5616C13.871 28.1995 14.4266 28.0012 15 28Z" fill="currentColor"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1907_131966">
+                                <rect width="32" height="32" fill="white" transform="translate(8 8)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+
+                    <div class="flex flex-col w-full">
+                        <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">5</span>
+                        <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Rooms</span>
+                    </div>
                 </div>
 
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">$2.35m</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Estimated Value</div>
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="currentColor" fill-rule="evenodd" d="M38 24c0 7.732-6.268 14-14 14s-14-6.268-14-14 6.268-14 14-14 14 6.268 14 14Zm-13-9h-2v2a4 4 0 0 0 0 8h2a2 2 0 1 1 0 4h-4.667v2H23v2h2v-2a4 4 0 0 0 0-8h-2a2 2 0 1 1 0-4h4.667v-2H25v-2Z" clip-rule="evenodd"/></svg>
+                    <div class="flex flex-col w-full">
+                        <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">$2.35</span>
+                        <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Estimated Value</span>
+                    </div>
                 </div>
 
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/search.svg" alt="Search" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">3</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Comparables</div>
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1907_135414)">
+                            <path d="M24.0013 30.7187L33.3346 23.252L37.3346 26.452V9.33333C37.3346 8.97971 37.1942 8.64057 36.9441 8.39052C36.6941 8.14048 36.3549 8 36.0013 8H12.0013C11.6477 8 11.3085 8.14048 11.0585 8.39052C10.8084 8.64057 10.668 8.97971 10.668 9.33333V38.6667C10.668 39.0203 10.8084 39.3594 11.0585 39.6095C11.3085 39.8595 11.6477 40 12.0013 40H24.0013V30.7187ZM16.0013 16H31.9386V18.6667H16.0013V16ZM21.3346 32H16.0013V29.3333H21.3346V32ZM16.0013 25.3333V22.6667H26.668V25.3333H16.0013Z" fill="currentColor"/>
+                            <path d="M40.0013 32.0003L33.3346 26.667L26.668 32.0003V38.667C26.668 39.0206 26.8084 39.3598 27.0585 39.6098C27.3085 39.8599 27.6477 40.0003 28.0013 40.0003H32.0013V36.0003H34.668V40.0003H38.668C39.0216 40.0003 39.3607 39.8599 39.6108 39.6098C39.8608 39.3598 40.0013 39.0206 40.0013 38.667V32.0003Z" fill="currentColor"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1907_135414">
+                                <rect width="32" height="32" fill="white" transform="translate(8 8)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+
+                    <div class="flex flex-col w-full">
+                        <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">3</span>
+                        <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Comparables</span>
+                    </div>
                 </div>
 
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/tools.svg" alt="Tools" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">7</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Renovation History</div>
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="currentColor" d="M31.7 10.927c-2.614-2.574-6.849-2.555-9.44.037l-.694.693 12.927 13.442 5.405-5.405-8.199-8.767ZM23.08 21.667l-4.082-4.08v-5.205l-7.197-3.599-3.02 3.02 3.6 7.197h5.203l4.081 4.081 1.414-1.414ZM37.602 31.46l-6.81-6.306-5.433 5.867 6.096 6.585A4.316 4.316 0 0 0 34.563 39h.087c1.16 0 2.25-.45 3.072-1.274a4.308 4.308 0 0 0 1.272-3.159A4.306 4.306 0 0 0 37.6 31.46l.002.001Z"/><path fill="currentColor" d="M24.912 18.019 10.394 31.46A4.313 4.313 0 0 0 9 34.569a4.309 4.309 0 0 0 1.273 3.158A4.307 4.307 0 0 0 13.346 39h.086a4.312 4.312 0 0 0 3.108-1.393l13.347-14.415-4.975-5.173v-.001Z"/></svg>
+                    <div class="flex flex-col w-full">
+                        <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">7</span>
+                        <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Renovation History</span>
+                    </div>
                 </div>
 
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/home.svg" alt="Home" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">2</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Zoning & Usage</div>
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="currentColor" d="M35.11 22.222h-6.666a1.334 1.334 0 0 1 0-2.666h6.222v-4.89a3.114 3.114 0 0 0-3.11-3.11H20.443v8h2.222a1.334 1.334 0 0 1 0 2.666h-2.222v4.89a1.334 1.334 0 0 1-2.667 0V11.555h-4.889a3.115 3.115 0 0 0-3.11 3.11v18.667a3.115 3.115 0 0 0 3.11 3.112h4.89v-3.556a1.334 1.334 0 0 1 2.666 0v3.556h14.667a3.115 3.115 0 0 0 3.11-3.112v-8a3.115 3.115 0 0 0-3.11-3.11Z"/></svg>
+                    <div class="flex flex-col w-full">
+                        <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">2</span>
+                        <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Zoning & Usage</span>
+                    </div>
                 </div>
 
-                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-                  <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">37</div>
-                  <div class="text-lg font-medium text-lightText group-hover:text-white">Transaction Records</div>
+                <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="currentColor" fill-rule="evenodd" d="M26.332 30.667a6.333 6.333 0 1 0 12.667 0 6.333 6.333 0 0 0-12.667 0Zm6.833 2a.5.5 0 1 0 0-1h-1a2.5 2.5 0 0 1-.5-4.95l.334-.716h1.333l.333.666H35v2h-2.834a.5.5 0 1 0 0 1h1a2.5 2.5 0 0 1 .5 4.95l-.333.717h-1.333l-.334-.667h-1.333v-2h2.833Z" clip-rule="evenodd"/><path fill="currentColor" d="M9.332 14.667a4 4 0 0 1 4-4h7.556l5.333 4h8.444a4 4 0 0 1 4 4v6.217A8.333 8.333 0 0 0 26.262 36h-12.93a4 4 0 0 1-4-4V14.667Z"/></svg>
+                    <div class="flex flex-col w-full">
+                        <span class="text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText group-hover:text-white transition duration-200">37</span>
+                        <span class="text-lg font-medium text-lightText leading-[1.4] lg:leading-none group-hover:text-white transition duration-200">Transaction Records</span>
+                    </div>
                 </div>
+
+                <div class="relative flex flex-col items-start justify-between pt-2.5 pb-1.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
+                    <svg class="opacity-0 lg:opacity-100" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="currentColor" d="M36.206 22.322 25.983 12.1a4.854 4.854 0 0 0-3.456-1.433h-8.75a3.115 3.115 0 0 0-3.111 3.111v8.748c0 1.307.508 2.534 1.433 3.458L22.32 36.207a4.873 4.873 0 0 0 3.456 1.429 4.873 4.873 0 0 0 3.456-1.43l6.973-6.972a4.849 4.849 0 0 0 1.432-3.456 4.849 4.849 0 0 0-1.432-3.456Zm-17.096-.988a2.225 2.225 0 0 1-2.222-2.223c0-1.224.998-2.222 2.222-2.222 1.225 0 2.223.998 2.223 2.222a2.225 2.225 0 0 1-2.223 2.223Z"/></svg>
+                    <div class="flex flex-col w-full">
+                        <span class="block text-[1.75rem] xl:text-[2.625rem] font-semibold -tracking-[0.84px] lg:-traking-[1.26px] text-darkText break-words group-hover:text-white transition duration-200">$1,475,600</span>
+                        <div class="flex gap-x-1 items-center">
+                            <span class="text-lg font-medium text-lightText leading-[1.4] group-hover:text-white transition duration-200">Currently</span>
+                            <span class="absolute lg:static top-5 left-5 inline-block py-[3px] px-2.5 bg-orange5 font-semibold text-xs rounded-md text-primary">For Sale</span>
+                        </div>
+                    </div>
+                </div>
+
               </div>
             <!-- Stats Grid -->
           </div>
@@ -449,94 +493,99 @@
         <!-- Know Your Home section -->
 
         <!-- Manage Finances section -->
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-[32px] font-semibold tracking-[-0.96px] text-darkText">Manage Finances</h2>
-          <div class="relative">
-            <button 
-              @click="manageFinancesMenu = !manageFinancesMenu; knowYourHomeMenu = false"
-              class="p-1 rounded-full hover:bg-gray-100"
-              :class="{ 'bg-gray-100': manageFinancesMenu }"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div
-              x-show="manageFinancesMenu"
-              @click.away="manageFinancesMenu = false"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-[8px] border border-[#E8E8E8] shadow-[0px_8px_16px_0px_rgba(0,0,0,0.08)] z-10"
-              x-cloak
-            >
-              <div class="py-1">
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                  <img src="/src/assets/icons/home.svg" alt="Add" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                  <span>Add info</span>
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                  <img src="/src/assets/icons/tools.svg" alt="Edit" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                  <span>Edit</span>
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                  <img src="/src/assets/icons/search.svg" alt="View" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                  <span>View Details</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <section>
+            <div class="container">
+                <div class="pt-12 border-t border-greyscaleGray2">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl lg:text-[2rem] font-semibold -tracking-[0.72px] text-darkText">Manage Finances</h2>
+                        <div class="relative">
+                        <button
+                                @click="knowYourHomeMenu = !knowYourHomeMenu; manageFinancesMenu = false"
+                                class="w-8 h-8 rounded-full bg-[url('/src/assets/icons/ellipsis.svg')] bg-no-repeat bg-[length:20px_20px] bg-center hover:bg-greyscaleGray2"
+                                :class="{ 'bg-greyscaleGray2': knowYourHomeMenu }"
+                        ></button>
+                        <!-- Dropdown menu -->
+                        <div
+                                x-show="knowYourHomeMenu"
+                                @click.away="knowYourHomeMenu = false"
+                                class="absolute right-0 mt-1 w-52 bg-white rounded-lg border border-bgGrey2 shadow-custom z-10"
+                                x-cloak
+                        >
+                            <div class="py-2 space-y-2">
+                                <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" stroke="currentColor" d="M10 2.5c4.135 0 7.5 3.365 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5S5.865 2.5 10 2.5ZM10 5a1.5 1.5 0 0 0-1.5 1.5v2h-2a1.5 1.5 0 0 0 0 3h2v2a1.5 1.5 0 0 0 3 0v-2h2a1.5 1.5 0 0 0 0-3h-2v-2A1.5 1.5 0 0 0 10 5Z"/></svg>
+                                    <span class="text-darkText font-medium">Add info</span>
+                                </a>
+                                <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><g fill="currentColor" clip-path="url(#a)"><path d="m17.098 8.667 1.146-1.147a4.045 4.045 0 0 0 1.194-2.882 4.048 4.048 0 0 0-1.194-2.881c-1.538-1.54-4.223-1.54-5.761 0l-1.147 1.146 5.762 5.764ZM9.568 4.672l-6.48 6.48a4.164 4.164 0 0 0-1.08 1.873L.573 18.41a.832.832 0 0 0 1.02 1.018l5.385-1.434a4.164 4.164 0 0 0 1.874-1.08l6.48-6.48-5.764-5.762Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
+                                    <span class="text-darkText font-medium">Edit</span>
+                                </a>
+                                <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8Zm1 12a1 1 0 1 1-2 0V9.5a1 1 0 1 1 2 0V14Zm-1-6.5c-.689 0-1.25-.561-1.25-1.25S9.311 5 10 5s1.25.561 1.25 1.25S10.689 7.5 10 7.5Z"/></svg>
+                                    <span class="text-darkText font-medium">View Details</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
 
-        <!-- Monthly Expenses Chart -->
-        <div class="bg-white rounded-lg border border-[#E8E8E8] p-6">
-          <h3 class="text-xl font-semibold mb-6">Your Total Monthly Costs</h3>
-          <div class="flex flex-col md:flex-row items-start gap-8">
-            <div class="w-[300px] h-[300px] relative">
-              <canvas id="monthlyExpensesChart"></canvas>
+                <!-- Monthly Expenses Chart -->
+                <div class="pt-4 px-4 pb- bg-white rounded-lg border border-bgGrey2">
+                    <h3 class="text-xl font-semibold mb-6">Your Total Monthly Costs</h3>
+                    <div class="flex flex-col md:flex-row items-start gap-8">
+                        <div class="w-[300px] h-[300px] relative">
+                            <canvas id="monthlyExpensesChart"></canvas>
+                        </div>
+
+                        <div class="flex-1">
+                            <div class="bg-[#F9F9F9] rounded-t-lg">
+                                <div class="grid grid-cols-2 px-4 py-3">
+                                    <div class="text-[#949494] font-medium">Type</div>
+                                    <div class="text-[#949494] font-medium">Costs</div>
+                                </div>
+                            </div>
+                            <div class="divide-y">
+                                <div class="grid grid-cols-2 px-4 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#FF603F]"></div>
+                                        <span>Mortgage</span>
+                                    </div>
+                                    <div>$3,500</div>
+                                </div>
+                                <div class="grid grid-cols-2 px-4 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#FF8F75]"></div>
+                                        <span>Insurance</span>
+                                    </div>
+                                    <div>$520</div>
+                                </div>
+                                <div class="grid grid-cols-2 px-4 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#8B2E14]"></div>
+                                        <span>Property Taxes</span>
+                                    </div>
+                                    <div>$1000</div>
+                                </div>
+                                <div class="grid grid-cols-2 px-4 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-[#FFBFAF]"></div>
+                                        <span>Maintenance Fees</span>
+                                    </div>
+                                    <div>$450</div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="#" class="text-primary hover:underline">See more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="flex-1">
-              <div class="bg-[#F9F9F9] rounded-t-lg">
-                <div class="grid grid-cols-2 px-4 py-3">
-                  <div class="text-[#949494] font-medium">Type</div>
-                  <div class="text-[#949494] font-medium">Costs</div>
-                </div>
-              </div>
-              <div class="divide-y">
-                <div class="grid grid-cols-2 px-4 py-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-[#FF603F]"></div>
-                    <span>Mortgage</span>
-                  </div>
-                  <div>$3,500</div>
-                </div>
-                <div class="grid grid-cols-2 px-4 py-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-[#FF8F75]"></div>
-                    <span>Insurance</span>
-                  </div>
-                  <div>$520</div>
-                </div>
-                <div class="grid grid-cols-2 px-4 py-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-[#8B2E14]"></div>
-                    <span>Property Taxes</span>
-                  </div>
-                  <div>$1000</div>
-                </div>
-                <div class="grid grid-cols-2 px-4 py-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-[#FFBFAF]"></div>
-                    <span>Maintenance Fees</span>
-                  </div>
-                  <div>$450</div>
-                </div>
-              </div>
-              <div class="text-center mt-4">
-                <a href="#" class="text-primary hover:underline">See more</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
+          <!-- Manage Finances section -->
+
+
       </main>
     </div>
     

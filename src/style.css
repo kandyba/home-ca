@@ -57,6 +57,13 @@
   .btn-outline {
     @apply border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-all;
   }
+
+  .scroll-nav-container {
+    @apply flex items-center
+    lg:mx-[calc((100vw_-_992px)_/_2_*_-1)] xl:mx-[calc((100vw_-_1248px)_/_2_*_-1)]
+    px-2.5 md:px-5 lg:px-0 lg:pl-4 lg:pt-6 lg:pb-5.5
+    lg:px-[calc((100vw_-_992px)_/_2)] xl:px-[calc((100vw_-_1248px)_/_2)] overflow-x-auto hide-scrollbar;
+  }
   
   .nav-link {
     @apply flex items-center p-2.5 gap-x-2 whitespace-nowrap;

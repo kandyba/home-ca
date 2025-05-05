@@ -18,6 +18,7 @@ export default {
         mediumGray: "#E0E0E0",
         orange2: "#C94629",
         orange4: "#FF785C",
+        orange5: "#FFDFD2",
         success: "#04BD78",
       },
       fontFamily: {
@@ -35,7 +36,6 @@ export default {
           md: '768px',
           lg: '1024px',
           xl: '1280px',
-          '2xl': '1440px',
         },
       },
       spacing: {
