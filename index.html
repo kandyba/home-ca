@@ -346,9 +346,9 @@
       </nav>
 
       <!-- Main Content -->
-      <main class="container mx-auto px-4 py-6" :class="{ 'mt-[88px]': isNavFixed && !isAtBottom }">
+      <main class="" :class="{ 'mt-[88px]': isNavFixed && !isAtBottom }">
         <!-- Example of ReadMore component usage -->
-        <div x-data="readMore(150)" class="mb-6">
+        <div x-data="readMore(150)" class="">
           <p x-text="displayText"></p>
           <button 
             x-show="showButton" 
@@ -359,96 +359,94 @@
         </div>
 
         <!-- Know Your Home section -->
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-[32px] font-semibold tracking-[-0.96px] text-darkText">Know Your Home</h2>
-          <div class="relative">
-            <button 
-              @click="knowYourHomeMenu = !knowYourHomeMenu; manageFinancesMenu = false"
-              class="p-1 rounded-full hover:bg-gray-100"
-              :class="{ 'bg-gray-100': knowYourHomeMenu }"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div
-              x-show="knowYourHomeMenu"
-              @click.away="knowYourHomeMenu = false"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-[8px] border border-[#E8E8E8] shadow-[0px_8px_16px_0px_rgba(0,0,0,0.08)] z-10"
-              x-cloak
-            >
-              <div class="py-1">
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                  <img src="/src/assets/icons/home.svg" alt="Add" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                  <span>Add info</span>
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                  <img src="/src/assets/icons/tools.svg" alt="Edit" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                  <span>Edit</span>
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
-                  <img src="/src/assets/icons/search.svg" alt="View" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
-                  <span>View Details</span>
-                </a>
+        <section class="pt-9">
+          <div class="container">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-[32px] font-semibold tracking-[-0.96px] text-darkText">Know Your Home</h2>
+              <div class="relative">
+                <button
+                  @click="knowYourHomeMenu = !knowYourHomeMenu; manageFinancesMenu = false"
+                  class="p-1 rounded-full hover:bg-gray-100"
+                  :class="{ 'bg-gray-100': knowYourHomeMenu }"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                </button>
+                <!-- Dropdown menu -->
+                <div
+                  x-show="knowYourHomeMenu"
+                  @click.away="knowYourHomeMenu = false"
+                  class="absolute right-0 mt-2 w-48 bg-white rounded-[8px] border border-[#E8E8E8] shadow-[0px_8px_16px_0px_rgba(0,0,0,0.08)] z-10"
+                  x-cloak
+                >
+                  <div class="py-1">
+                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
+                      <img src="/src/assets/icons/home.svg" alt="Add" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
+                      <span>Add info</span>
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
+                      <img src="/src/assets/icons/tools.svg" alt="Edit" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
+                      <span>Edit</span>
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white group">
+                      <img src="/src/assets/icons/search.svg" alt="View" class="h-4 w-4 mr-2 group-hover:brightness-0 group-hover:invert">
+                      <span>View Details</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Stats Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/home.svg" alt="Home" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">45</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Key Facts</div>
-          </div>
-          
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/tools.svg" alt="Tools" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">5</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Rooms</div>
-          </div>
-          
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">$2.35m</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Estimated Value</div>
-          </div>
-          
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/search.svg" alt="Search" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">3</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Comparables</div>
-          </div>
+          <div class="container px-0">
+            <!-- Stats Grid -->
+            <div class="overflow-x-auto grid grid-flow-col grid-rows-2 auto-cols-[8.75rem] gap-4 hide-scrollbar p-4">
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/home.svg" alt="Home" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">45</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Key Facts</div>
+                </div>
 
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/tools.svg" alt="Tools" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">7</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Renovation History</div>
-          </div>
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/tools.svg" alt="Tools" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">5</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Rooms</div>
+                </div>
 
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/home.svg" alt="Home" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">2</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Zoning & Usage</div>
-          </div>
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">$2.35m</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Estimated Value</div>
+                </div>
 
-          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
-            <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
-            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">37</div>
-            <div class="text-[18px] font-medium text-lightText group-hover:text-white">Transaction Records</div>
-          </div>
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/search.svg" alt="Search" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">3</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Comparables</div>
+                </div>
 
-<!--          <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">-->
-<!--            <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">-->
-<!--            <div class="text-[42px] font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">$1,475,600</div>-->
-<!--            <div class="flex items-center gap-2">-->
-<!--              <div class="text-[18px] font-medium text-lightText group-hover:text-white">Currently</div>-->
-<!--              <span class="px-2 py-1 text-xs bg-red-100 text-red-600 rounded group-hover:bg-white">For Sale</span>-->
-<!--            </div>-->
-<!--          </div>-->
-        </div>
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/tools.svg" alt="Tools" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">7</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Renovation History</div>
+                </div>
+
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/home.svg" alt="Home" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">2</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Zoning & Usage</div>
+                </div>
+
+                <div class="border border-[#E8E8E8] rounded-[6px] p-4 hover:bg-primary hover:text-white group transition-colors cursor-pointer">
+                  <img src="/src/assets/icons/dollar.svg" alt="Dollar" class="h-6 w-6 mb-2 group-hover:brightness-0 group-hover:invert">
+                  <div class="text-2xl font-semibold tracking-[-1.26px] text-darkText group-hover:text-white mb-1">37</div>
+                  <div class="text-lg font-medium text-lightText group-hover:text-white">Transaction Records</div>
+                </div>
+              </div>
+            <!-- Stats Grid -->
+          </div>
+        </section>
+        <!-- Know Your Home section -->
 
         <!-- Manage Finances section -->
         <div class="flex items-center justify-between mb-6">
