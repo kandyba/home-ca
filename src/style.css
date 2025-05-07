@@ -93,8 +93,29 @@
   .breadcrumbs span {
     @apply text-lightText;
   }
+
+  .swiper-slide {
+    @apply h-auto;
+  }
+
+  .manage-finances-button {
+    @apply w-8 h-8 rounded-full border border-greyscaleGray2 cursor-pointer bg-no-repeat bg-center;
+  }
+
+  .manage-finances-next {
+    @apply bg-[url('src/assets/icons/arrow-next.svg')];
+  }
+
+  .manage-finances-prev {
+    @apply bg-[url('src/assets/icons/arrow-prev.svg')];
+  }
 }
 
 [x-cloak] {
   display: none !important;
+}
+
+.gradient {
+  border-radius: 8px;
+  background: linear-gradient(0deg, #F5F5F5 0%, #F5F5F5 100%), url(<path-to-image>) lightgray 50% / cover no-repeat, #D9D9D9;
 }

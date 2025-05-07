@@ -127,3 +127,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 Alpine.start();
+
+//Sliders

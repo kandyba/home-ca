@@ -5,6 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HOME.CA - Your Home Management Platform</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body class="pt-[3.25rem] bg-white">
     <div x-data="navigation">
@@ -383,7 +385,7 @@
               </div>
             </div>
           </div>
-          <div class="container px-0 lg:px-4">
+          <div class="container px-0 md:px-4">
             <!-- Stats Grid -->
             <div class="grid grid-cols-[repeat(4,8.75rem)] md:grid-cols-4 grid-rows-2 lg:grid-rows-[repeat(2,10rem)] gap-2.5 p-4 lg:px-0 hide-scrollbar overflow-x-auto">
                 <div class="flex flex-col items-start justify-between py-2.5 px-4 border border-bgGray2 rounded-md text-darkText3 hover:bg-primary hover:text-white group transition duration-200 cursor-pointer">
@@ -482,7 +484,7 @@
         <!-- Know Your Home section -->
 
         <!-- Manage Finances section -->
-        <section>
+        <section class="mb-12">
             <div class="container">
                 <div class="pt-12 border-t border-greyscaleGray2">
                     <div class="flex items-center justify-between mb-6">
@@ -518,348 +520,567 @@
                         </div>
                     </div>
                 </div>
+                <div class="swiper manage-finances">
+                    <div class="swiper-wrapper flex-col lg:flex-row">
+                        <!-- Your Total Monthly Costs -->
+                        <div x-data="{ totalMonthlyCosts: false, open: true }"
+                             x-init="window.addEventListener('resize', () => {
+                                      if (window.matchMedia('(min-width: 1024px)').matches) {
+                                        open = true;
+                                      }
+                                    });"
+                            class="swiper-slide mb-2.5 lg:mb-0 p-4 bg-white rounded-lg border border-bgGrey2 z-10"
+                        >
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold">Your Total Monthly Costs</h3>
+                                <div class="flex items-center gap-x-1">
+                                    <div class="relative flex"
+                                         x-data="{ totalMonthlyCosts: false }"
+                                    >
+                                        <button
+                                                @click="totalMonthlyCosts = !totalMonthlyCosts;"
+                                                class="w-8 h-8 rounded-full bg-[url('/src/assets/icons/ellipsis.svg')] bg-no-repeat bg-[length:20px_20px] bg-center hover:bg-greyscaleGray2"
+                                                :class="{ 'bg-greyscaleGray2': totalMonthlyCosts }"
+                                        ></button>
+                                        <!-- Dropdown menu -->
+                                        <div
+                                                x-show="totalMonthlyCosts"
+                                                @click.away="totalMonthlyCosts = false"
+                                                class="absolute right-0 top-full mt-1 w-52 bg-white rounded-lg border border-bgGrey2 shadow-custom z-10"
+                                                x-cloak
+                                        >
+                                            <div class="py-2 space-y-2">
+                                                <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" stroke="currentColor" d="M10 2.5c4.135 0 7.5 3.365 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5S5.865 2.5 10 2.5ZM10 5a1.5 1.5 0 0 0-1.5 1.5v2h-2a1.5 1.5 0 0 0 0 3h2v2a1.5 1.5 0 0 0 3 0v-2h2a1.5 1.5 0 0 0 0-3h-2v-2A1.5 1.5 0 0 0 10 5Z"/></svg>
+                                                    <span class="text-darkText font-medium">Add info</span>
+                                                </a>
+                                                <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><g fill="currentColor" clip-path="url(#a)"><path d="m17.098 8.667 1.146-1.147a4.045 4.045 0 0 0 1.194-2.882 4.048 4.048 0 0 0-1.194-2.881c-1.538-1.54-4.223-1.54-5.761 0l-1.147 1.146 5.762 5.764ZM9.568 4.672l-6.48 6.48a4.164 4.164 0 0 0-1.08 1.873L.573 18.41a.832.832 0 0 0 1.02 1.018l5.385-1.434a4.164 4.164 0 0 0 1.874-1.08l6.48-6.48-5.764-5.762Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
+                                                    <span class="text-darkText font-medium">Edit</span>
+                                                </a>
+                                                <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8Zm1 12a1 1 0 1 1-2 0V9.5a1 1 0 1 1 2 0V14Zm-1-6.5c-.689 0-1.25-.561-1.25-1.25S9.311 5 10 5s1.25.561 1.25 1.25S10.689 7.5 10 7.5Z"/></svg>
+                                                    <span class="text-darkText font-medium">View Details</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        @click="open = !open"
+                                        :class="{ 'transform rotate-180': open }"
+                                        class="w-6 h-6 flex lg:hidden items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"
+                                    ></button>
+                                </div>
+                            </div>
 
-                <!-- Your Total Monthly Costs -->
-                <div class="mb-2.5 p-4 bg-white rounded-lg border border-bgGrey2">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-semibold">Your Total Monthly Costs</h3>
-                        <div class="flex items-center gap-x-1">
-                            <div class="relative flex"
-                                 x-data="{ totalMonthlyCosts: false }"
+                            <div
+                                x-show="open"
+                                x-cloak
+                                class="grid md:grid-cols-[18.75rem_1fr] gap-y-2 md:gap-x-10 md:mt-8">
+                                <div class="relative mx-auto w-[18.75rem] h-[18.75rem]">
+                                    <canvas id="monthlyExpensesChart"></canvas>
+                                </div>
+                                <div class="font-semibold">
+                                    <div class="bg-lightGray rounded">
+                                        <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5 text-darkText4 text-sm -tracking-[0.48px]">
+                                            <span>Type</span>
+                                            <span class="text-center">Costs</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-darkText text-center -tracking-[0.48px]">
+                                        <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5 border-b border-lightGray">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                                <span>Mortgage</span>
+                                            </div>
+                                            <span>$3,500</span>
+                                        </div>
+                                        <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5 border-b border-lightGray">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-2 h-2 rounded-full bg-orange5"></span>
+                                                <span>Insurance</span>
+                                            </div>
+                                            <span>$520</span>
+                                        </div>
+                                        <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-2 h-2 rounded-full bg-orange2"></span>
+                                                <span>Taxes & Other Fees</span>
+                                            </div>
+                                            <span>$1,800</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Your Total Monthly Costs -->
+
+                        <!-- Your Taxes & Other Costs-->
+                        <div x-data="{ otherCosts: false, open: false }"
+                             x-init="open = window.matchMedia('(min-width: 1024px)').matches;
+                                    window.addEventListener('resize', () => {
+                                      open = window.matchMedia('(min-width: 1024px)').matches;
+                                    });"
+                             class="swiper-slide mb-2.5 lg:mb-0 p-4 bg-white rounded-lg border border-bgGrey2"
+                        >
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold">Your Taxes & Other Costs</h3>
+                                <div class="flex items-center gap-x-1">
+                                    <button
+                                        @click="open = !open"
+                                        :class="{ 'transform rotate-180': open }"
+                                        class="w-6 h-6 flex lg:hidden items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
+                                </div>
+                            </div>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                class="mt-6"
                             >
-                                <button
-                                        @click="totalMonthlyCosts = !totalMonthlyCosts;"
-                                        class="w-8 h-8 rounded-full bg-[url('/src/assets/icons/ellipsis.svg')] bg-no-repeat bg-[length:20px_20px] bg-center hover:bg-greyscaleGray2"
-                                        :class="{ 'bg-greyscaleGray2': totalMonthlyCosts }"
-                                ></button>
-                                <!-- Dropdown menu -->
-                                <div
-                                        x-show="totalMonthlyCosts"
-                                        @click.away="totalMonthlyCosts = false"
-                                        class="absolute right-0 top-full mt-1 w-52 bg-white rounded-lg border border-bgGrey2 shadow-custom z-10"
-                                        x-cloak
-                                >
-                                    <div class="py-2 space-y-2">
-                                        <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" stroke="currentColor" d="M10 2.5c4.135 0 7.5 3.365 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5S5.865 2.5 10 2.5ZM10 5a1.5 1.5 0 0 0-1.5 1.5v2h-2a1.5 1.5 0 0 0 0 3h2v2a1.5 1.5 0 0 0 3 0v-2h2a1.5 1.5 0 0 0 0-3h-2v-2A1.5 1.5 0 0 0 10 5Z"/></svg>
-                                            <span class="text-darkText font-medium">Add info</span>
-                                        </a>
-                                        <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><g fill="currentColor" clip-path="url(#a)"><path d="m17.098 8.667 1.146-1.147a4.045 4.045 0 0 0 1.194-2.882 4.048 4.048 0 0 0-1.194-2.881c-1.538-1.54-4.223-1.54-5.761 0l-1.147 1.146 5.762 5.764ZM9.568 4.672l-6.48 6.48a4.164 4.164 0 0 0-1.08 1.873L.573 18.41a.832.832 0 0 0 1.02 1.018l5.385-1.434a4.164 4.164 0 0 0 1.874-1.08l6.48-6.48-5.764-5.762Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
-                                            <span class="text-darkText font-medium">Edit</span>
-                                        </a>
-                                        <a href="#" class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8Zm1 12a1 1 0 1 1-2 0V9.5a1 1 0 1 1 2 0V14Zm-1-6.5c-.689 0-1.25-.561-1.25-1.25S9.311 5 10 5s1.25.561 1.25 1.25S10.689 7.5 10 7.5Z"/></svg>
-                                            <span class="text-darkText font-medium">View Details</span>
-                                        </a>
+                                <div class="bg-lightGray rounded">
+                                    <div class="grid grid-cols-[1fr_7rem] px-4 py-2.5 text-xs md:text-sm text-darkText4 font-semibold -tracking-[0.36px] md:-tracking-[0.48px]">
+                                        <span>Provider</span>
+                                        <span class="text-center">Payment</span>
+                                    </div>
+                                </div>
+                                <div class="text-darkText font-semibold text-xs md:text-base -tracking-[0.36px] md:-tracking-[0.48px]">
+                                    <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <span>Property Taxes</span>
+                                        <div class="grid gap-y-0.5 text-center md:leading-tight">
+                                            <span class="md:text-2xl">$150</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <span>Maintenance Fees</span>
+                                        <div class="grid gap-y-0.5 text-center md:leading-tight">
+                                            <span class="md:text-2xl">$175</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <span>Utilities</span>
+                                        <div class="grid gap-y-0.5 text-center md:leading-tight">
+                                            <span class="md:text-2xl">$200</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <span>Association Fee</span>
+                                        <div class="grid gap-y-0.5 text-center md:leading-tight">
+                                            <span class="md:text-2xl">$22</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3">
+                                        <span>Other Fees</span>
+                                        <div class="grid gap-y-0.5 text-center">
+                                            <span>$260</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="w-6 h-6 flex items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
                         </div>
-                    </div>
+                        <!-- Your Taxes & Other Costs-->
 
-                    <div class="grid md:grid-cols-[18.75rem_1fr] gap-y-2 md:gap-x-10 md:mt-8">
-                        <div class="relative mx-auto w-[18.75rem] h-[18.75rem]">
-                            <canvas id="monthlyExpensesChart"></canvas>
-                        </div>
-                        <div class="font-semibold">
-                            <div class="bg-lightGray rounded">
-                                <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5 text-darkText4 text-sm -tracking-[0.48px]">
-                                    <span>Type</span>
-                                    <span class="text-center">Costs</span>
+                        <!-- Compare Mortgage Rates -->
+                        <div x-data="{ compareMortgageRates: false, open: false }"
+                             x-init="open = window.matchMedia('(min-width: 1024px)').matches;
+                                    window.addEventListener('resize', () => {
+                                      open = window.matchMedia('(min-width: 1024px)').matches;
+                                    });"
+                             class="swiper-slide mb-2.5 lg:mb-0 p-4 bg-white rounded-lg border border-bgGrey2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold">Compare Mortgage Rates</h3>
+                                <div class="flex items-center gap-x-1">
+                                    <button
+                                        @click="open = !open"
+                                        :class="{ 'transform rotate-180': open }"
+                                        class="w-6 h-6 flex lg:hidden items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
                                 </div>
                             </div>
-                            <div class="text-darkText text-center -tracking-[0.48px]">
-                                <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5 border-b border-lightGray">
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary"></span>
-                                        <span>Mortgage</span>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                class="mt-6"
+                            >
+                                <div class="bg-lightGray rounded">
+                                    <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] px-1 md:pl-4 py-2.5 text-xs md:text-sm text-darkText4 font-semibold -tracking-[0.36px]">
+                                        <span class="pl-1.5 md:pl-0">Provider</span>
+                                        <span class="text-center">Rate</span>
+                                        <span class="text-center">Payment</span>
                                     </div>
-                                    <span>$3,500</span>
                                 </div>
-                                <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5 border-b border-lightGray">
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-orange5"></span>
-                                        <span>Insurance</span>
+                                <div class="text-darkText font-semibold text-xs -tracking-[0.36px]">
+                                    <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3 border-b border-lightGray">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-mortgage-company.webp"
+                                                     alt="Mortage Company"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <div class="md:text-base"><p>Mortgage Company</p></div>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.00%</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,000</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
                                     </div>
-                                    <span>$520</span>
-                                </div>
-                                <div class="grid grid-cols-[1fr_4rem] px-4 py-2.5">
-                                    <div class="flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-orange2"></span>
-                                        <span>Taxes & Other Fees</span>
+                                    <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-scotiabank.webp"
+                                                     alt="Provider Name"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <div class="md:text-base"><p>Provider Name</p></div>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.25%</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,350</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
                                     </div>
-                                    <span>$1,800</span>
+                                    <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3 bg-primary text-white rounded-lg">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-rbc.webp"
+                                                     alt="RBC"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <div class="md:text-base">
+                                                <p>RBC</p>
+                                                <p class="font-normal text-[0.625rem] leading-none">This is your mortgage</p>
+                                            </div>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.25%</span>
+                                            <span class="text-[0.625rem] text-white font-normal">Per Month</span>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,350</span>
+                                            <span class="text-[0.625rem] text-white font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3 border-b border-lightGray">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-wells-fargo.webp"
+                                                     alt="Wells Fargo"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <div class="md:text-base"><p>Wells Fargo</p></div>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.00%</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,000</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-cibc.webp"
+                                                     alt="CIBC"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <div class="md:text-base"><p>CIBC</p></div>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.00%</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,000</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Compare Mortgage Rates -->
+
+                        <!-- Compare Insurance Rates -->
+                        <div x-data="{ compareInsuranceRates: false, open: false }"
+                             x-init="open = window.matchMedia('(min-width: 1024px)').matches;
+                                    window.addEventListener('resize', () => {
+                                      open = window.matchMedia('(min-width: 1024px)').matches;
+                                    });"
+                             class="swiper-slide mb-2.5 lg:mb-0 p-4 bg-white rounded-lg border border-bgGrey2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-semibold">Compare Insurance Rates</h3>
+                                <div class="flex items-center gap-x-1">
+                                    <button
+                                        @click="open = !open"
+                                        :class="{ 'transform rotate-180': open }"
+                                        class="w-6 h-6 flex lg:hidden items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
+                                </div>
+                            </div>
+
+                            <div
+                                x-show="open"
+                                x-cloak
+                                class="mt-6"
+                            >
+                                <div class="bg-lightGray rounded">
+                                    <div class="grid grid-cols-[1fr_7rem] px-4 py-2.5 text-sm text-darkText4 font-semibold -tracking-[0.36px]">
+                                        <span>Provider</span>
+                                        <span class="text-center">Payment</span>
+                                    </div>
+                                </div>
+                                <div class="text-darkText font-semibold -tracking-[0.48px]">
+                                    <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-sonnet.webp"
+                                                     alt="Sonnet"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <p>Sonnet</p>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-xl md:text-2xl">$150</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-aviva.webp"
+                                                     alt="Aviva"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <p>Aviva</p>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-xl md:text-2xl">$175</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3 border-b border-lightGray">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-manulife.webp"
+                                                     alt="Manulife"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <p>Manulife</p>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-xl md:text-2xl">$220</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3">
+                                        <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
+                                            <div>
+                                                <img src="src/assets/img/logo-cibc.webp"
+                                                     alt="CIBC"
+                                                     class="w-full h-full object-contain">
+                                            </div>
+                                            <p>CIBC</p>
+                                        </div>
+                                        <div class="grid gap-y-0.5 text-center leading-tight">
+                                            <span class="text-xl md:text-2xl">$260</span>
+                                            <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
+                                        </div>
+                                    </div>
+                                    <div class="relative h-16 flex items-center justify-center px-1 py-3 text-white rounded-lg bg-[url('src/assets/icons/upload-bg-img.svg')] bg-primary bg-no-repeat bg-right-top">
+                                        <input type="file" class="absolute inset-0 opacity-0 cursor-pointer">
+                                        <p class="pr-7 text-base text-center text-white bg-[url('src/assets/icons/upload.svg')] bg-no-repeat bg-[right_center]">Upload - Insurance Document</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Compare Insurance Rates -->
+                    </div>
+                    <div class="hidden lg:flex lg:justify-center lg:mt-7.5 lg:gap-x-2.5">
+                        <div class="manage-finances-next manage-finances-button"></div>
+                        <div class="manage-finances-prev manage-finances-button"></div>
                     </div>
                 </div>
-                <!-- Your Total Monthly Costs -->
-
-                <!-- Your Taxes & Other Costs-->
-                <div class="mb-2.5 p-4 bg-white rounded-lg border border-bgGrey2">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-semibold">Your Taxes & Other Costs</h3>
-                        <div class="flex items-center gap-x-1">
-                            <button class="w-6 h-6 flex items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <div class="bg-lightGray rounded">
-                            <div class="grid grid-cols-[1fr_7rem] px-4 py-2.5 text-xs md:text-sm text-darkText4 font-semibold -tracking-[0.36px] md:-tracking-[0.48px]">
-                                <span>Provider</span>
-                                <span class="text-center">Payment</span>
-                            </div>
-                        </div>
-                        <div class="text-darkText font-semibold text-xs md:text-base -tracking-[0.36px] md:-tracking-[0.48px]">
-                            <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
-                                <span>Property Taxes</span>
-                                <div class="grid gap-y-0.5 text-center md:leading-tight">
-                                    <span class="md:text-2xl">$150</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
-                                <span>Maintenance Fees</span>
-                                <div class="grid gap-y-0.5 text-center md:leading-tight">
-                                    <span class="md:text-2xl">$175</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
-                                <span>Utilities</span>
-                                <div class="grid gap-y-0.5 text-center md:leading-tight">
-                                    <span class="md:text-2xl">$200</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3 border-b border-lightGray">
-                                <span>Association Fee</span>
-                                <div class="grid gap-y-0.5 text-center md:leading-tight">
-                                    <span class="md:text-2xl">$22</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] items-center px-4 py-3">
-                                <span>Other Fees</span>
-                                <div class="grid gap-y-0.5 text-center">
-                                    <span>$260</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Your Taxes & Other Costs-->
-
-                <!-- Compare Mortgage Rates -->
-                <div class="mb-2.5 p-4 bg-white rounded-lg border border-bgGrey2">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-semibold">Compare Mortgage Rates</h3>
-                        <div class="flex items-center gap-x-1">
-                            <button class="w-6 h-6 flex items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <div class="bg-lightGray rounded">
-                            <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] px-1 md:pl-4 py-2.5 text-xs md:text-sm text-darkText4 font-semibold -tracking-[0.36px]">
-                                <span class="pl-1.5 md:pl-0">Provider</span>
-                                <span class="text-center">Rate</span>
-                                <span class="text-center">Payment</span>
-                            </div>
-                        </div>
-                        <div class="text-darkText font-semibold text-xs -tracking-[0.36px]">
-                            <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3 border-b border-lightGray">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-mortgage-company.webp"
-                                             alt="Mortage Company"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <div class="md:text-base"><p>Mortgage Company</p></div>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.00%</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,000</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-scotiabank.webp"
-                                             alt="Provider Name"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <div class="md:text-base"><p>Provider Name</p></div>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.25%</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,350</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3 bg-primary text-white rounded-lg">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-rbc.webp"
-                                             alt="RBC"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <div class="md:text-base">
-                                        <p>RBC</p>
-                                        <p class="font-normal text-[0.625rem] leading-none">This is your mortgage</p>
-                                    </div>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.25%</span>
-                                    <span class="text-[0.625rem] text-white font-normal">Per Month</span>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,350</span>
-                                    <span class="text-[0.625rem] text-white font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3 border-b border-lightGray">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-wells-fargo.webp"
-                                             alt="Wells Fargo"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <div class="md:text-base"><p>Wells Fargo</p></div>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.00%</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,000</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_5.5rem_5.5rem] md:grid-cols-[1fr_11rem_11rem] items-center px-1 md:pl-4 py-3">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-cibc.webp"
-                                             alt="CIBC"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <div class="md:text-base"><p>CIBC</p></div>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">4.00%</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-sm md:text-2xl md:-tracking-[0.6px]">$3,000</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Compare Mortgage Rates -->
-
-                <!-- Compare Insurance Rates -->
-                <div class="mb-2.5 p-4 bg-white rounded-lg border border-bgGrey2">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-xl font-semibold">Compare Insurance Rates</h3>
-                        <div class="flex items-center gap-x-1">
-                            <button class="w-6 h-6 flex items-center justify-center rounded-full bg-lightGray bg-[url('src/assets/icons/accordion-arrow.svg')] bg-center bg-no-repeat transition duration-200"></button>
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <div class="bg-lightGray rounded">
-                            <div class="grid grid-cols-[1fr_7rem] px-4 py-2.5 text-sm text-darkText4 font-semibold -tracking-[0.36px]">
-                                <span>Provider</span>
-                                <span class="text-center">Payment</span>
-                            </div>
-                        </div>
-                        <div class="text-darkText font-semibold -tracking-[0.48px]">
-                            <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3 border-b border-lightGray">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-sonnet.webp"
-                                             alt="Sonnet"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <p>Sonnet</p>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-xl md:text-2xl">$150</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3 border-b border-lightGray">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-aviva.webp"
-                                             alt="Aviva"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <p>Aviva</p>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-xl md:text-2xl">$175</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3 border-b border-lightGray">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-manulife.webp"
-                                             alt="Manulife"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <p>Manulife</p>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-xl md:text-2xl">$220</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[1fr_7rem] md:grid-cols-[1fr_8rem] items-center px-4 py-3">
-                                <div class="grid grid-cols-[2.5rem_1fr] items-center gap-x-2">
-                                    <div>
-                                        <img src="src/assets/img/logo-cibc.webp"
-                                             alt="CIBC"
-                                             class="w-full h-full object-contain">
-                                    </div>
-                                    <p>CIBC</p>
-                                </div>
-                                <div class="grid gap-y-0.5 text-center leading-tight">
-                                    <span class="text-xl md:text-2xl">$260</span>
-                                    <span class="text-[0.625rem] text-darkText4 font-normal">Per Month</span>
-                                </div>
-                            </div>
-                            <div class="relative h-16 flex items-center justify-center px-1 py-3 text-white rounded-lg bg-[url('src/assets/icons/upload-bg-img.svg')] bg-primary bg-no-repeat bg-right-top">
-                                <input type="file" class="absolute inset-0 opacity-0">
-                                <p class="pr-7 text-base text-center text-white bg-[url('src/assets/icons/upload.svg')] bg-no-repeat bg-[right_center]">Upload - Insurance Document</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Compare Insurance Rates -->
             </div>
         </section>
-          <!-- Manage Finances section -->
+        <!-- Manage Finances section -->
 
+        <!-- Mortgage Management section -->
+        <section>
+            <div class="container">
+                <div class="pt-12 border-t border-greyscaleGray2">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl lg:text-[2rem] font-semibold -tracking-[0.72px] text-darkText">Mortgage Management</h2>
+                        <div class="relative flex">
+                            <button
+                                    @click="manageFinancesMenu = !manageFinancesMenu;"
+                                    class="w-8 h-8 rounded-full bg-[url('/src/assets/icons/ellipsis.svg')] bg-no-repeat bg-[length:20px_20px] bg-center hover:bg-greyscaleGray2"
+                                    :class="{ 'bg-greyscaleGray2': manageFinancesMenu }"
+                            ></button>
+                            <!-- Dropdown menu -->
+                            <div
+                                    x-show="manageFinancesMenu"
+                                    @click.away="manageFinancesMenu = false"
+                                    class="absolute right-0 top-full mt-1 w-52 bg-white rounded-lg border border-bgGrey2 shadow-custom z-10"
+                                    x-cloak
+                            >
+                                <div class="py-2 space-y-2">
+                                    <a href="#"
+                                       class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                             viewBox="0 0 20 20">
+                                            <path fill="currentColor" stroke="currentColor"
+                                                  d="M10 2.5c4.135 0 7.5 3.365 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5S5.865 2.5 10 2.5ZM10 5a1.5 1.5 0 0 0-1.5 1.5v2h-2a1.5 1.5 0 0 0 0 3h2v2a1.5 1.5 0 0 0 3 0v-2h2a1.5 1.5 0 0 0 0-3h-2v-2A1.5 1.5 0 0 0 10 5Z"/>
+                                        </svg>
+                                        <span class="text-darkText font-medium">Add info</span>
+                                    </a>
+                                    <a href="#"
+                                       class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                             viewBox="0 0 20 20">
+                                            <g fill="currentColor" clip-path="url(#a)">
+                                                <path d="m17.098 8.667 1.146-1.147a4.045 4.045 0 0 0 1.194-2.882 4.048 4.048 0 0 0-1.194-2.881c-1.538-1.54-4.223-1.54-5.761 0l-1.147 1.146 5.762 5.764ZM9.568 4.672l-6.48 6.48a4.164 4.164 0 0 0-1.08 1.873L.573 18.41a.832.832 0 0 0 1.02 1.018l5.385-1.434a4.164 4.164 0 0 0 1.874-1.08l6.48-6.48-5.764-5.762Z"/>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="a">
+                                                    <path fill="#fff" d="M0 0h20v20H0z"/>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                        <span class="text-darkText font-medium">Edit</span>
+                                    </a>
+                                    <a href="#"
+                                       class="flex items-center gap-x-2 px-2.5 py-1 text-bade text-darkText3 transition duration-200 hover:bg-lightGray">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                             viewBox="0 0 20 20">
+                                            <path fill="currentColor"
+                                                  d="M10 2c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8Zm1 12a1 1 0 1 1-2 0V9.5a1 1 0 1 1 2 0V14Zm-1-6.5c-.689 0-1.25-.561-1.25-1.25S9.311 5 10 5s1.25.561 1.25 1.25S10.689 7.5 10 7.5Z"/>
+                                        </svg>
+                                        <span class="text-darkText font-medium">View Details</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-x-2.5">
+                    <div class="px-2.5 bg-lightGray rounded-lg">
+                        <div class="min-h-[5.625rem] grid grid-cols-[1fr_5.25rem] py-3.5 border-b border-bgGray2">
+                            <h3 class="font-semibold -tracking-[0.6px] leading-tight">Connect with RBC Mortgage</h3>
+                            <div class="flex justify-center">
+                                <img
+                                    src="src/assets/img/logo-rbc.webp"
+                                    alt="RBC"
+                                    class="w-full h-full object-contain"
+                                >
+                            </div>
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                    </div>
+                    <div class="px-2.5 bg-lightGray bg-[url('src/assets/img/logo-grey-bg.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
+                        <div class="min-h-[5.625rem] py-3.5 border-b border-bgGray2">
+                            <div class="max-w-48 flex gap-x-2 items-center">
+                                <strong class="text-[2.625rem] leading-none">3</strong>
+                                <h3 class="text-base font-semibold -tracking-[0.6px] leading-tight">Mortgage Opportunities</h3>
+                            </div>
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                    </div>
+                    <div class="px-2.5 bg-lightGray bg-[url('src/assets/img/logo-grey-bg.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
+                        <div class="min-h-[5.625rem] py-3.5 border-b border-bgGray2">
+                            <div class="max-w-60 flex gap-x-2 items-center">
+                                <strong class="text-[2.625rem] leading-none">22</strong>
+                                <h3 class="text-base font-semibold -tracking-[0.6px] leading-tight">Mortgage Lenders. Compare Your Mortgage</h3>
+                            </div>
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                    </div>
+                    <div class="px-2.5 bg-lightGray rounded-lg">
+                        <div class="min-h-[5.625rem] py-3.5 border-b border-bgGray2">
+                            <div class="max-w-60 flex gap-x-2 items-center">
+                                <img src="src/assets/icons/mortgage-lenders-icon.svg" alt="Mortgage Lenders">
+                                <h3 class="text-xl font-semibold -tracking-[0.6px] leading-tight">Mortgage News</h3>
+                            </div>
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                    </div>
+                    <div class="px-2.5 bg-primary text-white bg-[url('src/assets/icons/logo-small-darker.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
+                        <div class="min-h-[5.625rem] py-3.5 border-b border-white/20">
+                            <h3 class="mb-1 text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Upload Mortgage Documents</h3>
+                            <p class="text-sm leading-[1.4]">You will be able to get detailed mortgage information on one place</p>
+                        </div>
+                        <div class="relative flex justify-between items-center text-sm font-semibold py-2.5 after:w-6 after:h-6 after:bg-[url('src/assets/icons/upload.svg')] after:bg-no-repeat">
+                            Upload documents
+                            <input type="file" class="absolute inset-0 opacity-0 cursor-pointer">
+                        </div>
+                    </div>
+                    <div class="px-2.5 bg-secondary text-white rounded-lg">
+                        <div class="min-h-[5.625rem] flex justify-between items-start grow py-3.5 border-b border-white/20">
+                            <h3 class="max-w-40 mt-5 text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Mortgage Calculator</h3>
+                            <img class="mt-2 mr-2" src="src/assets/icons/calc.svg" alt="Mortgage Calculator">
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Open Mortgage Calculator</a>
+                    </div>
+                    <div class="relative px-2.5 bg-lightGray text-white bg-[url('src/assets/img/get-a-new-qoute.webp')] bg-no-repeat bg-cover rounded-lg z-10 overflow-hidden after:absolute after:inset-0 after:bg-[linear-gradient(180deg,_rgb(31_31_31_/0)_0%,_#1F1F1F_100%)] after:-z-10">
+                        <div class="min-h-[5.625rem] flex items-end py-3.5 border-b border-white/20">
+                            <h3 class="text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Get a New Qoute</h3>
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                    </div>
+                    <div class="px-2.5 bg-secondary text-white bg-[url('src/assets/icons/logo-small-blue.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
+                        <div class="min-h-[5.625rem] flex justify-between items-start grow py-3.5 border-b border-white/20">
+                            <h3 class="max-w-40 mt-5 text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Top Mortgage Agents</h3>
+                            <img class="max-w-[7.875rem] object-contain" src="src/assets/img/experts.webp" alt="Experts">
+                        </div>
+                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Connect with Top Agents</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Mortgage Management section -->
 
       </main>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="/src/main.js"></script>
+
+  <script>
+      let slider = null;
+      function initSwiper() {
+          if (window.innerWidth < 1024) {
+              if (!slider) {
+                  slider = new Swiper('.manage-finances', {
+                      slidesPerView: "auto",
+                      spaceBetween: 32,
+                      navigation: {
+                          nextEl: ".manage-finances-next",
+                          prevEl: ".manage-finances-prev",
+                      },
+                  });
+              }
+          } else {
+              if (slider) {
+                  slider.destroy(true, true);
+                  slider = null;
+              }
+          }
+      }
+      window.addEventListener('DOMContentLoaded', initSwiper);
+      window.addEventListener('resize', initSwiper);
+  </script>
   </body>
+
 </html>
