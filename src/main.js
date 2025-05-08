@@ -128,4 +128,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Alpine.start();
 
-//Sliders
+//Manage Finances Slider
+let manageFinancesSlider = null;
+
+function toggleManageFinancesSlider() {
+  const breakpoint = 1024;
+
+  if (window.innerWidth >= breakpoint) {
+    if (!manageFinancesSlider) {
+      manageFinancesSlider = new Swiper('.manage-finances', {
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        navigation: {
+          nextEl: '.manage-finances-next',
+          prevEl: '.manage-finances-prev',
+        },
+      });
+    }
+  } else {
+    if (manageFinancesSlider) {
+      manageFinancesSlider.destroy(true, true);
+      manageFinancesSlider = null;
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', toggleManageFinancesSlider);
+window.addEventListener('resize', toggleManageFinancesSlider);
+
+
+// Mortgage Management Slider
+let mortgageManagementSlider = null;
+
+function toggleMortgageManagementSlider() {
+  const breakpoint = 1024;
+
+  if (window.innerWidth < breakpoint) {
+    if (!mortgageManagementSlider) {
+      mortgageManagementSlider = new Swiper('.mortgage-management', {
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    }
+  } else {
+    if (mortgageManagementSlider) {
+      mortgageManagementSlider.destroy(true, true);
+      mortgageManagementSlider = null;
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', toggleMortgageManagementSlider);
+window.addEventListener('resize', toggleMortgageManagementSlider);

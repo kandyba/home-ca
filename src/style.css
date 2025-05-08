@@ -98,6 +98,10 @@
     @apply h-auto;
   }
 
+  .manage-finances .swiper-slide {
+    @apply lg:w-[40rem];
+  }
+
   .manage-finances-button {
     @apply w-8 h-8 rounded-full border border-greyscaleGray2 cursor-pointer bg-no-repeat bg-center;
   }
@@ -109,13 +113,21 @@
   .manage-finances-prev {
     @apply bg-[url('src/assets/icons/arrow-prev.svg')];
   }
+
 }
 
 [x-cloak] {
   display: none !important;
 }
 
-.gradient {
-  border-radius: 8px;
-  background: linear-gradient(0deg, #F5F5F5 0%, #F5F5F5 100%), url(<path-to-image>) lightgray 50% / cover no-repeat, #D9D9D9;
+.swiper-button-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.swiper-pagination-bullet {
+  @apply mx-0 w-1.5 h-1.5 bg-bgGray2 opacity-100 transition duration-300;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply bg-primary;
 }

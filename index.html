@@ -520,14 +520,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper manage-finances">
+                <div class="swiper manage-finances lg:-mx-4 lg:px-4">
                     <div class="swiper-wrapper flex-col lg:flex-row">
                         <!-- Your Total Monthly Costs -->
                         <div x-data="{ totalMonthlyCosts: false, open: true }"
                              x-init="window.addEventListener('resize', () => {
                                       if (window.matchMedia('(min-width: 1024px)').matches) {
-                                        open = true;
-                                      }
+                                        open = true; }
                                     });"
                             class="swiper-slide mb-2.5 lg:mb-0 p-4 bg-white rounded-lg border border-bgGrey2 z-10"
                         >
@@ -974,78 +973,85 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="flex flex-col gap-x-2.5">
-                    <div class="px-2.5 bg-lightGray rounded-lg">
-                        <div class="min-h-[5.625rem] grid grid-cols-[1fr_5.25rem] py-3.5 border-b border-bgGray2">
-                            <h3 class="font-semibold -tracking-[0.6px] leading-tight">Connect with RBC Mortgage</h3>
-                            <div class="flex justify-center">
-                                <img
-                                    src="src/assets/img/logo-rbc.webp"
-                                    alt="RBC"
-                                    class="w-full h-full object-contain"
-                                >
+                <div class="swiper mortgage-management pb-12 -mx-4 md:-mx-8 lg:mx-0 px-4 md:px-8 lg:px-0">
+                    <div class="swiper-wrapper lg:grid lg:grid-cols-4 lg:gap-2.5">
+                        <div class="swiper-slide w-[19.5rem] lg:w-full flex flex-col px-2.5 xl:px-5 bg-lightGray rounded-lg">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow grid grid-cols-[1fr_5.25rem] lg:grid-cols-1 py-3.5 lg:pt-6 lg:gap-y-5 border-b border-bgGray2">
+                                <h3 class="text-xl lg:text-2xl font-semibold -tracking-[0.6px] leading-tight lg:order-1">Connect with RBC Mortgage</h3>
+                                <div class="flex justify-center lg:max-w-44">
+                                    <img
+                                        src="src/assets/img/logo-rbc-big.webp"
+                                        alt="RBC"
+                                        class="w-full h-full object-contain"
+                                    >
+                                </div>
+                            </div>
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                        </div>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full flex flex-col px-2.5 xl:px-5 bg-lightGray bg-[url('src/assets/img/logo-grey-bg.svg')] bg-no-repeat bg-[right_top_-2.5rem] lg:bg-[left_-3.125rem_top] lg:bg-[length:11rem_14rem] rounded-lg">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow py-3.5 lg:pt-11 border-b border-bgGray2">
+                                <div class="max-w-48 flex lg:flex-col gap-x-2 items-center lg:items-start">
+                                    <strong class="text-[2.625rem] lg:text-[4rem] leading-none">3</strong>
+                                    <h3 class="text-base lg:text-2xl font-semibold -tracking-[0.6px] leading-tight">Mortgage Opportunities</h3>
+                                </div>
+                            </div>
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                        </div>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full flex flex-col px-2.5 xl:px-5 bg-lightGray bg-[url('src/assets/img/logo-grey-bg.svg')] bg-no-repeat bg-[right_top_-2.5rem] lg:bg-[left_-3.125rem_top] lg:bg-[length:11rem_14rem] rounded-lg">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow py-3.5 lg:pt-11 border-b border-bgGray2">
+                                <div class="max-w-60 flex lg:flex-col gap-x-2 items-center lg:items-start">
+                                    <strong class="text-[2.625rem] lg:text-[4rem] leading-none">22</strong>
+                                    <h3 class="text-base lg:text-2xl font-semibold -tracking-[0.6px] leading-tight">Mortgage Lenders. Compare Your Mortgage</h3>
+                                </div>
+                            </div>
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                        </div>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full flex flex-col px-2.5 xl:px-5 bg-lightGray rounded-lg">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow py-3.5 border-b border-bgGray2">
+                                <div class="max-w-60 lg:h-full flex lg:flex-col gap-x-2 items-center lg:justify-center">
+                                    <img src="src/assets/icons/mortgage-lenders-icon.svg" alt="Mortgage Lenders" class="lg:w-16">
+                                    <h3 class="text-xl lg:text-2xl font-semibold -tracking-[0.6px] leading-tight">Mortgage News</h3>
+                                </div>
+                            </div>
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
+                        </div>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full lg:order-2 flex flex-col px-2.5 xl:px-5 bg-primary text-white bg-[url('src/assets/icons/logo-small-darker.svg')] bg-no-repeat bg-[right_top_-2.5rem] lg:bg-[center_top_2.5rem] lg:bg-[length:4rem_5.25rem] rounded-lg">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow py-3.5 lg:pt-[8.125rem] border-b border-white/20 lg:text-center">
+                                <h3 class="mb-1 text-xl lg:text-2xl text-white font-semibold -tracking-[0.6px] leading-tight">Upload Mortgage Documents</h3>
+                                <p class="text-sm leading-[1.4]">You will be able to get detailed mortgage information on one place</p>
+                            </div>
+                            <div class="relative flex justify-between items-center text-sm font-semibold py-2.5 lg:py-5 after:w-6 lg:after:w-5 after:h-6 lg:after:h-5 after:bg-[url('src/assets/icons/upload.svg')] after:bg-no-repeat">
+                                Upload documents
+                                <input type="file" class="absolute inset-0 opacity-0 cursor-pointer">
                             </div>
                         </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
-                    </div>
-                    <div class="px-2.5 bg-lightGray bg-[url('src/assets/img/logo-grey-bg.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
-                        <div class="min-h-[5.625rem] py-3.5 border-b border-bgGray2">
-                            <div class="max-w-48 flex gap-x-2 items-center">
-                                <strong class="text-[2.625rem] leading-none">3</strong>
-                                <h3 class="text-base font-semibold -tracking-[0.6px] leading-tight">Mortgage Opportunities</h3>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full lg:order-1 flex flex-col px-2.5 xl:px-5 bg-secondary text-white rounded-lg">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow flex lg:flex-col justify-between lg:justify-center items-start lg:items-center grow py-3.5 border-b border-white/20">
+                                <h3 class="lg:order-1 max-w-40 lg:max-w-none mt-5 text-xl lg:text-2xl text-white font-semibold -tracking-[0.6px] leading-tight">Mortgage Calculator</h3>
+                                <picture class="mt-2 mr-2 lg:m-0">
+                                    <source srcset="src/assets/icons/calc-desktop.svg" media="(min-width: 1024px)" />
+                                    <img class="" src="src/assets/icons/calc.svg" alt="Mortgage Calculator">
+                                </picture>
                             </div>
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Open Mortgage Calculator</a>
                         </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
-                    </div>
-                    <div class="px-2.5 bg-lightGray bg-[url('src/assets/img/logo-grey-bg.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
-                        <div class="min-h-[5.625rem] py-3.5 border-b border-bgGray2">
-                            <div class="max-w-60 flex gap-x-2 items-center">
-                                <strong class="text-[2.625rem] leading-none">22</strong>
-                                <h3 class="text-base font-semibold -tracking-[0.6px] leading-tight">Mortgage Lenders. Compare Your Mortgage</h3>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full relative flex flex-col px-2.5 xl:px-5 bg-lightGray text-white bg-[url('src/assets/img/get-a-new-qoute.webp')] bg-no-repeat bg-cover rounded-lg z-10 overflow-hidden after:absolute after:inset-0 after:bg-[linear-gradient(180deg,_rgb(31_31_31_/0)_0%,_#1F1F1F_100%)] after:-z-10">
+                            <div class="min-h-[5.625rem] lg:min-h-[16.5rem] grow flex items-end py-3.5 border-b border-white/20">
+                                <h3 class="text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Get a New Qoute</h3>
                             </div>
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
                         </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
-                    </div>
-                    <div class="px-2.5 bg-lightGray rounded-lg">
-                        <div class="min-h-[5.625rem] py-3.5 border-b border-bgGray2">
-                            <div class="max-w-60 flex gap-x-2 items-center">
-                                <img src="src/assets/icons/mortgage-lenders-icon.svg" alt="Mortgage Lenders">
-                                <h3 class="text-xl font-semibold -tracking-[0.6px] leading-tight">Mortgage News</h3>
+                        <div class="swiper-slide w-[19.5rem] lg:w-full lg:order-3 flex flex-col px-2.5 xl:px-5 bg-secondary text-white bg-[url('src/assets/icons/logo-small-blue.svg')] bg-no-repeat bg-[right_top_-2.5rem] lg:bg-[left_-3.125rem_top] lg:bg-[length:11rem_14rem]  rounded-lg">
+                            <div class="lg:relative min-h-[5.625rem] lg:min-h-[16.5rem] grow flex justify-between items-start grow py-3.5 border-b border-white/20">
+                                <h3 class="max-w-40 lg:max-w-none mt-5 lg:mt-11 lg:grid xl:gap-y-2 text-xl lg:text-2xl text-white font-semibold -tracking-[0.6px] leading-tight">
+                                    <span class="lg:text-[2.5rem] xl:text-[4rem] lg:uppercase lg:-tracking-[1.92px]">Top</span> Mortgage Agents
+                                </h3>
+                                <img class="lg:absolute lg:top-[2.725rem] xl:top-12 lg:right-0 max-w-[7.875rem] object-contain" src="src/assets/img/experts.webp" alt="Experts">
                             </div>
-                        </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
-                    </div>
-                    <div class="px-2.5 bg-primary text-white bg-[url('src/assets/icons/logo-small-darker.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
-                        <div class="min-h-[5.625rem] py-3.5 border-b border-white/20">
-                            <h3 class="mb-1 text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Upload Mortgage Documents</h3>
-                            <p class="text-sm leading-[1.4]">You will be able to get detailed mortgage information on one place</p>
-                        </div>
-                        <div class="relative flex justify-between items-center text-sm font-semibold py-2.5 after:w-6 after:h-6 after:bg-[url('src/assets/icons/upload.svg')] after:bg-no-repeat">
-                            Upload documents
-                            <input type="file" class="absolute inset-0 opacity-0 cursor-pointer">
+                            <a href="#" class="flex justify-between text-sm font-semibold py-2.5 lg:py-5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Connect with Top Agents</a>
                         </div>
                     </div>
-                    <div class="px-2.5 bg-secondary text-white rounded-lg">
-                        <div class="min-h-[5.625rem] flex justify-between items-start grow py-3.5 border-b border-white/20">
-                            <h3 class="max-w-40 mt-5 text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Mortgage Calculator</h3>
-                            <img class="mt-2 mr-2" src="src/assets/icons/calc.svg" alt="Mortgage Calculator">
-                        </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Open Mortgage Calculator</a>
-                    </div>
-                    <div class="relative px-2.5 bg-lightGray text-white bg-[url('src/assets/img/get-a-new-qoute.webp')] bg-no-repeat bg-cover rounded-lg z-10 overflow-hidden after:absolute after:inset-0 after:bg-[linear-gradient(180deg,_rgb(31_31_31_/0)_0%,_#1F1F1F_100%)] after:-z-10">
-                        <div class="min-h-[5.625rem] flex items-end py-3.5 border-b border-white/20">
-                            <h3 class="text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Get a New Qoute</h3>
-                        </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Learn More</a>
-                    </div>
-                    <div class="px-2.5 bg-secondary text-white bg-[url('src/assets/icons/logo-small-blue.svg')] bg-no-repeat bg-[right_top_-2.5rem] rounded-lg">
-                        <div class="min-h-[5.625rem] flex justify-between items-start grow py-3.5 border-b border-white/20">
-                            <h3 class="max-w-40 mt-5 text-xl text-white font-semibold -tracking-[0.6px] leading-tight">Top Mortgage Agents</h3>
-                            <img class="max-w-[7.875rem] object-contain" src="src/assets/img/experts.webp" alt="Experts">
-                        </div>
-                        <a href="#" class="flex justify-between text-sm font-semibold py-2.5 bg-[url('src/assets/icons/arrow-prev-white.svg')] bg-no-repeat bg-[right_center]">Connect with Top Agents</a>
-                    </div>
+                    <div class="static flex lg:hidden mt-6 justify-center gap-x-2 swiper-pagination"></div>
                 </div>
             </div>
         </section>
@@ -1057,30 +1063,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="/src/main.js"></script>
 
-  <script>
-      let slider = null;
-      function initSwiper() {
-          if (window.innerWidth < 1024) {
-              if (!slider) {
-                  slider = new Swiper('.manage-finances', {
-                      slidesPerView: "auto",
-                      spaceBetween: 32,
-                      navigation: {
-                          nextEl: ".manage-finances-next",
-                          prevEl: ".manage-finances-prev",
-                      },
-                  });
-              }
-          } else {
-              if (slider) {
-                  slider.destroy(true, true);
-                  slider = null;
-              }
-          }
-      }
-      window.addEventListener('DOMContentLoaded', initSwiper);
-      window.addEventListener('resize', initSwiper);
-  </script>
   </body>
 
 </html>
