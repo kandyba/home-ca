@@ -131,3 +131,7 @@
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   @apply bg-primary;
 }
+
+.swiper.manage-finances {
+  @apply lg:mx-[calc((100vw_-_992px)_/_2_*_-1)] xl:mx-[calc((100vw_-_1248px)_/_2_*_-1)] lg:px-[calc((100vw_-_992px)_/_2)] xl:px-[calc((100vw_-_1248px)_/_2)];
+}
