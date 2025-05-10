@@ -107,11 +107,11 @@
   }
 
   .manage-finances-next {
-    @apply bg-[url('src/assets/icons/arrow-next.svg')];
+    @apply bg-[url('src/assets/icons/arrow-prev.svg')];
   }
 
   .manage-finances-prev {
-    @apply bg-[url('src/assets/icons/arrow-prev.svg')];
+    @apply bg-[url('src/assets/icons/arrow-next.svg')];
   }
 
 }
